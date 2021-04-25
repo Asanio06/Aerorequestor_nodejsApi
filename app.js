@@ -1,4 +1,6 @@
 const express = require('express');
+require('dotenv').config('./.env');
+
 const weatherRouter = require('./routes/weather.route');
 
 const app = express();

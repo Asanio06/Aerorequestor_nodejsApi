@@ -2,6 +2,9 @@ const axios = require('axios');
 const xml2js = require('xml2js');
 
 const parser = new xml2js.Parser();
+const model = require('../model');
+
+const airportModel = model.airport;
 
 const getXmlWeatherFile = async () => {
   const url = 'https://www.aviationweather.gov/adds/dataserver_current/current/metars.cache.xml';
@@ -21,7 +24,7 @@ exports.getWeatherDataOfAirport = async (req, res) => {
       });
     });
   } catch (erreur) {
-    return res.status(500).send({
+    return res.status(400).send({
       message: erreur.message,
     });
   }
@@ -38,7 +41,7 @@ exports.getWindiestAirportInWorld = async (req, res) => {
       });
     });
   } catch (erreur) {
-    return res.status(500).send({
+    return res.status(400).send({
       message: erreur.message,
     });
   }
