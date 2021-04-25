@@ -4,6 +4,7 @@
   "description": "Api pour aeronautique",
   "main": "app.js",
   "scripts": {
+    "start": "nodemon -L listen.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Lansana DIOMANDE",
