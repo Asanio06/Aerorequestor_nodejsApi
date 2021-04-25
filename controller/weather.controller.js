@@ -8,7 +8,7 @@ const getXmlWeatherFile = async () => {
   const xmlFile = await axios.get(url);
   return xmlFile;
 };
-exports.findBestEntrepriseForUser = async (req, res) => {
+exports.getWeatherDataOfAirport = async (req, res) => {
   const { ICAO } = req.params;
 
   try {
@@ -18,6 +18,23 @@ exports.findBestEntrepriseForUser = async (req, res) => {
       const weatherData = allWeatherData.filter((el) => el.station_id == ICAO)[0];
       return res.status(200).send({
         weatherData,
+      });
+    });
+  } catch (erreur) {
+    return res.status(500).send({
+      message: erreur.message,
+    });
+  }
+};
+
+exports.getWindiestAirportInWorld = async (req, res) => {
+  try {
+    const xmlFile = await getXmlWeatherFile();
+    return parser.parseString(xmlFile.data, (err, result) => {
+      const windiestAirport = result.response.data[0].METAR
+        .sort((a, b) => b.wind_speed_kt - a.wind_speed_kt)[0];
+      return res.status(200).send({
+        windiestAirport,
       });
     });
   } catch (erreur) {
