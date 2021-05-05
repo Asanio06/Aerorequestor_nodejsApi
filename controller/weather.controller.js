@@ -62,7 +62,6 @@ exports.getWindiestAirportInWorld = async (req, res) => {
           break;
         }
       }
-
       return res.status(200).send({
         airport,
         windiestAirport,
