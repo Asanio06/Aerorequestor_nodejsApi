@@ -6,6 +6,7 @@ const { Op } = require('sequelize');
 const model = require('../model');
 
 const airportModel = model.airport;
+const countrieModel = model.countrie;
 
 const getXmlWeatherFile = async () => {
   const url = 'https://www.aviationweather.gov/adds/dataserver_current/current/metars.cache.xml';
@@ -62,7 +63,9 @@ exports.getWindiestAirportInWorld = async (req, res) => {
           break;
         }
       }
+      const countrie = await countrieModel.findOne({ where: { code: airport.iso_country } });
       return res.status(200).send({
+        countrie,
         airport,
         windiestAirport,
       });
