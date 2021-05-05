@@ -19,7 +19,7 @@ exports.getWeatherDataOfAirport = async (req, res) => {
     const xmlFile = await getXmlWeatherFile();
     return parser.parseString(xmlFile.data, (err, result) => {
       const allWeatherData = result.response.data[0].METAR;
-      const weatherData = allWeatherData.filter((el) => el.station_id == ICAO)[0];
+      const weatherData = allWeatherData.filter((el) => el.station_id === ICAO)[0];
       return res.status(200).send({
         weatherData,
       });
@@ -33,17 +33,19 @@ exports.getWeatherDataOfAirport = async (req, res) => {
 
 exports.getWindiestAirportInWorld = async (req, res) => {
   try {
-
     const xmlFile = await getXmlWeatherFile();
     return parser.parseString(xmlFile.data, async (err, result) => {
       const stationSortByWind = await result.response.data[0].METAR
         .sort((a, b) => b.wind_speed_kt - a.wind_speed_kt);
       let windiestAirport = null;
-
+      let airport = null;
+      // eslint-disable-next-line guard-for-in,no-restricted-syntax
       for (const stationSortByWindKey in stationSortByWind) {
         const airportId = stationSortByWind[stationSortByWindKey].station_id;
+        // eslint-disable-next-line no-continue
         if (!stationSortByWind[stationSortByWindKey].wind_dir_degrees) continue;
-        const airport = (await airportModel.findOne({
+        // eslint-disable-next-line no-await-in-loop
+        airport = await (airportModel.findOne({
           where: {
             [Op.and]: [{
               ident: airportId,
@@ -62,6 +64,7 @@ exports.getWindiestAirportInWorld = async (req, res) => {
       }
 
       return res.status(200).send({
+        airport,
         windiestAirport,
       });
     });
