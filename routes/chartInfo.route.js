@@ -1,10 +1,6 @@
-const weatherController = require('../controller/weather.controller');
-
-// eslint-disable-next-line import/order
 const router = require('express').Router();
 
-// Obtenir le client à partir de son pseudo
-router.get('/metar/:ICAO', weatherController.getWeatherDataOfAirport);
-router.get('/windiestAirport', weatherController.getWindiestAirportInWorld);
+const chartInfoController = require('../controller/chartInfo.controller');
 
+router.get('/airport/:ICAO', chartInfoController.getListOfChartOfAirport);
 module.exports = router;
