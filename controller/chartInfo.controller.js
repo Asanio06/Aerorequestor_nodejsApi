@@ -19,10 +19,6 @@ const getLinkOfChart = async (nameOfCharts) => {
   return encodeURI(lien);
 };
 
-const addLinkOfChartsInList = async (listOfChart) => {
-
-};
-
 exports.getListOfChartOfAirport = async (req, res) => {
   const { ICAO } = req.params;
   try {

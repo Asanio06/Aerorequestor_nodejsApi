@@ -20,7 +20,8 @@ exports.getWeatherDataOfAirport = async (req, res) => {
     const xmlFile = await getXmlWeatherFile();
     return parser.parseString(xmlFile.data, (err, result) => {
       const allWeatherData = result.response.data[0].METAR;
-      const weatherData = allWeatherData.filter((el) => el.station_id === ICAO)[0];
+      const weatherData = allWeatherData.filter((el) => el.station_id == ICAO)[0];
+
       return res.status(200).send({
         weatherData,
       });
