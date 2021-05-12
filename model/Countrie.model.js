@@ -1,7 +1,8 @@
 module.exports = (sequelize, Sequelize) => {
-  const Airport = sequelize.define('Countrie', {
+  const Countrie = sequelize.define('Countrie', {
     code: {
       type: Sequelize.STRING(2),
+      primaryKey: true,
     },
     name: {
       type: Sequelize.STRING(44),
@@ -20,5 +21,5 @@ module.exports = (sequelize, Sequelize) => {
     tableName: 'Countrie',
   });
 
-  return Airport;
+  return Countrie;
 };

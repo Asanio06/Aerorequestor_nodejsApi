@@ -1,9 +1,11 @@
 module.exports = (sequelize, Sequelize) => {
   const Airport = sequelize.define('Airport', {
     ident: {
+      map: 'indent',
       type: Sequelize.STRING(7),
       allowNull: false,
       unique: true,
+      primaryKey: true,
     },
     type: {
       type: Sequelize.STRING(14),
