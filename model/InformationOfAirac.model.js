@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
     AIRAC: {
       type: Sequelize.STRING(20),
     },
-    Dete_begin: {
+    Date_begin: {
       type: Sequelize.DATE,
     },
     Date_end: {

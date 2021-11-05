@@ -1,5 +1,6 @@
 const express = require('express');
 require('dotenv').config('./.env');
+const memoryCache = require('./routes/memory-cache');
 const model = require('./model');
 
 const weatherRouter = require('./routes/weather.route');
@@ -10,9 +11,9 @@ const app = express();
 
 const port = 8000;
 model.sequelize.sync();
-app.use('/api/weather', weatherRouter);
-app.use('/api/chart', chartInfoRouter);
-app.use('/api/airport', airportRouter);
+app.use('/api/weather', memoryCache.cache(120), weatherRouter);
+app.use('/api/chart', memoryCache.cache(86400), chartInfoRouter);
+app.use('/api/airport', memoryCache.cache(100000), airportRouter);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console

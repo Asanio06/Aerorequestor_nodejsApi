@@ -8,8 +8,6 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-/*  INITIALISATION DES SCRIPS DES PROCEDURES STOCKE AFIN DE LES CREES SI ELLES EXISTENT PAS */
-
 db.airport = require('./Airport.model')(sequelize, Sequelize);
 db.countrie = require('./Countrie.model')(sequelize, Sequelize);
 db.informationOfAirac = require('./InformationOfAirac.model')(sequelize, Sequelize);

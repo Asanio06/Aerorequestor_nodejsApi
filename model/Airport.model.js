@@ -59,6 +59,8 @@ module.exports = (sequelize, Sequelize) => {
 
   }, {
     tableName: 'Airport',
+    timestamps: false,
+
   });
 
   return Airport;

@@ -7,11 +7,12 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING(10),
     },
     Chart_name: {
-      type: Sequelize.STRING(50),
+      type: Sequelize.STRING(255),
     },
 
   }, {
     tableName: 'Chart_of_airport',
+    timestamps: false,
   });
 
   return ChartOfAirport;

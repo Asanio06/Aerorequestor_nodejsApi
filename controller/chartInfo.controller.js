@@ -8,11 +8,13 @@ const getLinkOfChart = async (nameOfCharts) => {
   const informationOfAirac = (await informationOfAiracModel.getInfoOfChart(nameOfCharts))[0];
   if (!informationOfAirac) throw new Error("Cette carte n'existe pas");
   if (informationOfAirac.Countrie_code === 'FR') {
+    const chartName = informationOfAirac.Chart_name.split(' ').join('_');
+
     if (informationOfAirac.Chart_type === 'IFR') {
-      lien = `https://www.sia.aviation-civile.gouv.fr/dvd/eAIP_${informationOfAirac.Info1}/FRANCE/${informationOfAirac.Info2}/html/eAIP/Cartes/${informationOfAirac.ICAO_AIRPORT}/${informationOfAirac.Chart_name}.pdf`;
+      lien = `https://www.sia.aviation-civile.gouv.fr/dvd/eAIP_${informationOfAirac.Info1}/FRANCE/AIRAC-${informationOfAirac.Info2}/html/eAIP/Cartes/${informationOfAirac.ICAO_AIRPORT}/${chartName}.pdf`;
     }
-    if (informationOfAirac.Chart_name === 'VFR') {
-      lien = `https://www.sia.aviation-civile.gouv.fr/dvd/eAIP_${informationOfAirac.Info1}/Atlas-VAC/PDF_AIPparSSection/VAC/AD/${informationOfAirac.Chart_name}.pdf`;
+    if (informationOfAirac.Chart_type === 'VFR') {
+      lien = `https://www.sia.aviation-civile.gouv.fr/dvd/eAIP_${informationOfAirac.Info1}/Atlas-VAC/PDF_AIPparSSection/VAC/AD/${chartName}`;
     }
   }
 

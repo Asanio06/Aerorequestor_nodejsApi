@@ -3,7 +3,7 @@ module.exports = [
   process.env.BDD_USER,
   process.env.BDD_PASSWORD,
   {
-    host: 'mysql-asanio.alwaysdata.net',
+    host: 'localhost',
     dialect: 'mysql',
     dialectOptions: {
       multipleStatements: true,
