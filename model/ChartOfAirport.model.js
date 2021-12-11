@@ -9,6 +9,9 @@ module.exports = (sequelize, Sequelize) => {
     Chart_name: {
       type: Sequelize.STRING(255),
     },
+    Chart_url: {
+      type: Sequelize.STRING(255),
+    },
 
   }, {
     tableName: 'Chart_of_airport',

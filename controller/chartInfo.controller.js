@@ -28,8 +28,7 @@ exports.getListOfChartOfAirport = async (req, res) => {
     if (listCarteAirport.length === 0) throw new Error('Les cartes ne cet aéroport ne sont disponible');
 
     listCarteAirport = await Promise.all(listCarteAirport
-      .map((el) => JSON.parse(JSON.stringify(el)))
-      .map((chart) => getLinkOfChart(chart.Chart_name).then((url) => ({ ...chart, url }))));
+      .map((el) => JSON.parse(JSON.stringify(el))));
 
     return res.status(200).send({
       listCarteAerport: listCarteAirport,
