@@ -3,6 +3,7 @@ const model = require('../model');
 const chartOfAirportModele = model.chartOfAirport;
 const informationOfAiracModel = model.informationOfAirac;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const getLinkOfChart = async (nameOfCharts) => {
   let lien;
   const informationOfAirac = (await informationOfAiracModel.getInfoOfChart(nameOfCharts))[0];

@@ -1,0 +1,36 @@
+version: "3"
+services:
+  api:
+    restart: on-failure
+    ports:
+      - "8000:8000"
+    environment:
+      - BDD_USER=${BDD_USER}
+      - BDD_PASSWORD=${BDD_PASSWORD}
+      - BDD_HOST=${BDD_HOST}
+      - BDD_NAME=${BDD_NAME}
+    depends_on:
+      - db
+    networks:
+      - net
+
+
+  db:
+    image: mysql:8.0.27
+    environment:
+      - MYSQL_DATABASE=${BDD_NAME}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${BDD_USER}
+      - MYSQL_PASSWORD=${BDD_PASSWORD}
+    volumes:
+      - ../initdb/:/docker-entrypoint-initdb.d
+      - mysql:/var/lib/mysql
+    networks:
+      - net
+
+
+volumes:
+  mysql:
+
+networks:
+  net:

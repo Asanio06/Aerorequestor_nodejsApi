@@ -3,7 +3,7 @@ module.exports = [
   process.env.BDD_USER,
   process.env.BDD_PASSWORD,
   {
-    host: 'localhost',
+    host: process.env.BDD_HOST !== '' ? process.env.BDD_HOST : 'localhost',
     port: 3306,
     dialect: 'mysql',
     dialectOptions: {

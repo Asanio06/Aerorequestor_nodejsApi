@@ -11,6 +11,7 @@ const app = express();
 
 const port = 8000;
 model.sequelize.sync();
+// eslint-disable-next-line no-console
 app.use('/api/weather', memoryCache.cache(120), weatherRouter);
 app.use('/api/chart', memoryCache.cache(86400), chartInfoRouter);
 app.use('/api/airport', memoryCache.cache(100000), airportRouter);
