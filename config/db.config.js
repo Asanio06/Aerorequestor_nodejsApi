@@ -4,7 +4,7 @@ module.exports = [
   process.env.BDD_PASSWORD,
   {
     host: process.env.BDD_HOST !== '' ? process.env.BDD_HOST : 'localhost',
-    port: 3308,
+    port: process.env.BDD_PORT !== '' ? process.env.BDD_PORT : 3306,
     dialect: 'mysql',
     dialectOptions: {
       multipleStatements: true,
