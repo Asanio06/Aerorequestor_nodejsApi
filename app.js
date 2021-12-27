@@ -14,7 +14,7 @@ model.sequelize.sync();
 // eslint-disable-next-line no-console
 app.use('/api/weather', memoryCache.cache(120), weatherRouter);
 app.use('/api/chart', memoryCache.cache(86400), chartInfoRouter);
-app.use('/api/airport', memoryCache.cache(100000), airportRouter);
+app.use('/api/airport', airportRouter);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console

@@ -22,3 +22,25 @@ exports.getAllOpenAirport = async (req, res) => {
     });
   }
 };
+
+exports.getAirport = async (req, res) => {
+  const { ICAO } = req.params;
+
+  try {
+    const airport = await airportModel.findOne({
+      where: {
+        ident: ICAO,
+
+      },
+      include: ['Metar','Charts'],
+    });
+
+    return res.status(200).send({
+      airport,
+    });
+  } catch (erreur) {
+    return res.status(400).send({
+      message: erreur.message,
+    });
+  }
+};
