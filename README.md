@@ -10,9 +10,11 @@
 
 - [x] Send weather information by Airport
 - [x] Send the windiest Airport in World
-- [ ] Send windiest Airport by country
-- [ ] Send link of IFR charts for specified Airport
-- [ ] Send link of VFR charts for specified Airport
+- [x] Send link of charts for specified Airport
+- [ ] Migrating from express js to nest js
+- [ ] Make API REST
+- [ ] Use pagination on API
+- [ ] Doc API with swagger
 
 ## CONTACT
 
