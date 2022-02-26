@@ -1,7 +1,7 @@
-version: "3"
+version: "3.9"
 services:
   api:
-    restart: on-failure
+    restart: unless-stopped
     ports:
       - "8000:8000"
     environment:
@@ -12,7 +12,7 @@ services:
     depends_on:
       - db
     networks:
-      - net
+      - db_net
 
 
   db:
@@ -26,11 +26,11 @@ services:
       - ../initdb/:/docker-entrypoint-initdb.d
       - mysql:/var/lib/mysql
     networks:
-      - net
+      - db_net
 
 
 volumes:
   mysql:
 
 networks:
-  net:
+  db_net:
